@@ -100,6 +100,14 @@ public class Recipe {
 		this.directions = directions;
 	}
 	
+	public Set<Ingredient> getIngredient() {
+		return ingredient;
+	}
+
+	public void setIngredient(Set<Ingredient> ingredient) {
+		this.ingredient = ingredient;
+	}
+
 	public Byte[] getImage() {
 		return image;
 	}
@@ -107,8 +115,7 @@ public class Recipe {
 	public void setImage(Byte[] image) {
 		this.image = image;
 	}
-	
-	
+		
 	public Notes getNotes() {
 		return notes;
 	}
