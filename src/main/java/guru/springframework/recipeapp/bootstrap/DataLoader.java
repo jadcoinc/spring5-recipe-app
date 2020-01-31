@@ -4,7 +4,8 @@ import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 
 import guru.springframework.recipeapp.domain.Category;
@@ -16,8 +17,9 @@ import guru.springframework.recipeapp.repositories.CategoryRepository;
 import guru.springframework.recipeapp.repositories.UnitOfMeasureRepository;
 
 //@Component
-public class DataLoader implements CommandLineRunner {
-
+//public class DataLoader implements CommandLineRunner {
+public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
+	
 	private Difficulty difficulty;
 	private final CategoryRepository categoryRepository;
 	private final UnitOfMeasureRepository unitOfMeasureRepository;
@@ -29,8 +31,9 @@ public class DataLoader implements CommandLineRunner {
 	}
 
 	@Override
-	public void run(String... args) throws Exception {
+//	public void run(String... args) throws Exception {
 
+	public void onApplicationEvent(ContextRefreshedEvent event) {
 		
 		Set<Ingredient> ingredients = new HashSet<>();
 		Set<Category> categories = new HashSet<>();
@@ -137,7 +140,7 @@ public class DataLoader implements CommandLineRunner {
 		
 		
 		// finish setting-up the recipe
-		guacamoleRecipe.setIngredient(ingredients);
+		guacamoleRecipe.setIngredients(ingredients);
 		guacamoleRecipe.setNotes(notes);
 		guacamoleRecipe.setCategories(categories);
 
